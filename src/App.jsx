@@ -1,122 +1,232 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+function Scoring() {
+  const [score, setcount] = useState(10)
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <h1>{score}</h1>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      <button onClick={() => setcount(score + 5)}>
+        Click me and get your score increased
+      </button>
     </>
   )
 }
+
+function StatusCheck() {
+  const [status, setcount] = useState("offline")
+  return (
+    <>
+      <h1>{status}</h1>
+      {status === "online" ? <p>"online"</p> : <p>"offline!"</p>}
+      <button onClick={() => setcount(status === "offline" ? "online" : "offline")}>
+        click me to change your status
+      </button>
+    </>
+  )
+}
+
+
+function MyNames() {
+  const names = ["Ali", "Ahmed", "Sara"]
+  return <>
+  
+  <h1>Here are all my names</h1>
+  {names.map((name) => {
+    return <h2>{name}</h2>
+  })} 
+  </>
+}
+
+function Info (){
+
+  const users = [
+  { name: "Ali", age: 16 },
+  { name: "Ahmed", age: 17 },
+  { name: "Sara", age: 15 }
+]
+
+return <>
+<h1>Names and their ages</h1>
+{users.map((item)=>{
+  return <>
+  <h2>{item.name}</h2>
+  <h2>{item.age}</h2>
+  </>
+})}
+</>
+}
+
+const users = [
+  { name: "Ali", age: 16 },
+  { name: "Ahmed", age: 17 },
+  { name: "Sara", age: 15 }
+]
+
+ 
+function User({name, age}){
+  return <h1>{name}-{age}</h1>
+}
+
+
+function Test(){
+  return<>
+{users.map((user)=>{
+  return <User name={user.name} age={user.age} />
+})}
+</>
+}
+
+
+const userss=[
+  {id:1 , name:"ali"},
+  {id:2 , name:"ahmed"},
+  {id:3 , name:"sara"}
+]
+
+function Comp ({name}){
+  return <h1>{name}</h1> 
+}
+
+function Result (){
+  return<>
+  {userss.map((user)=>{
+    return <Comp name={user.name} key={user.id} />
+  })}
+  </>
+}
+
+
+function Display_names(){
+  const [Names,setNames]=useState(["ali","Ahmed"]);
+  return<>
+  {Names.map((name)=>{
+    return <h1>{name}</h1>
+  })}
+  <button onClick={() => setNames([...Names,"sara"])}>
+   "Click here to add Sara plz"
+  </button>
+  <button onClick={() => setNames([Names.filter((name)=> name!=="ali")])}>
+   "Click here to remove ali plz"
+  </button>
+  <button onClick={() => setNames([...Names,"ali"])}>
+   "Click here to add ali back "
+  </button>
+  <button onClick={() => setNames(
+  Names.map((name) => {
+    if (name === "ahmed") {
+      return "hassan"
+    }
+
+    return name
+  })
+)}>
+  Click here to change Ahmed into Hassan
+</button>
+
+  </>
+}
+
+function Test_t(){
+  const [name,setName]=useState("")
+  const [age,setAge]=useState("")
+  return<>
+  <input 
+    value={name}
+    onChange={(e)=>setName(e.target.value)}
+  />
+
+  <input 
+    value={age}
+    onChange={(e)=>setAge(e.target.value)}
+  />
+  <h2>Hello {name},you are {age} years old</h2>
+  </>
+}
+
+function TEST(){
+  const[isChecked,setIsChecked]=useState(false)
+  return<>
+  <input
+  type="checkbox"
+  checked={isChecked}
+  onChange={(e)=>setIsChecked(e.target.checked)}
+  />
+  </>
+}
+
+function Country (){
+  const [country, setCountry] = useState("")
+  return<>
+<select
+  value={country}
+  onChange={(e) => setCountry(e.target.value)}
+>
+  <option value="">Choose a country</option>
+  <option value="Pakistan">Pakistan</option>
+  <option value="India">India</option>
+  <option value="Turkey">Turkey</option>
+</select>
+<h2>You selected: {country}</h2>
+</>
+}
+
+
+function Fruits(){
+  const [fruit,setFruit]=useState("")
+  return<>
+  <select
+  value={fruit}
+  onChange={(e)=>setFruit(e.target.value)}
+  >
+    <option value="">Choose a fruit</option>
+    <option value="apple">apple</option>
+    <option value="banana">banana</option>
+    <option value="mango">mango</option>
+  </select>
+  <h1>{fruit}</h1>
+  </>
+} 
+
+function FormTest() {
+  const [name,setName]=useState("")
+  
+  function handlesubmit(){
+    document.write(name)
+ }
+
+   return<>
+  <form
+  onSubmit={(e)=>{
+      e.preventDefault()
+      handlesubmit()
+  }}>
+  <input
+  value={name}
+  onChange={(e)=>setName(e.target.value)}
+  />
+  <button type="submit">
+    submit
+  </button>
+  </form>
+  </>
+}
+
+
+
+
+
+
+
+function App() {
+  return (
+    <>
+      <FormTest />
+    </>
+  )
+}
+
 
 export default App
