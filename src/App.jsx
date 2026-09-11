@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function Scoring() {
@@ -215,6 +215,35 @@ function FormTest() {
 }
 
 
+function Child(props){
+  return(
+  <button onClick={props.onclicking}>
+    click this button to display a message for yourseld
+  </button>
+  )
+}
+function Parent(){
+  function Message(){
+    return (
+    document.write("Button is clicked!")
+    )
+  }
+  return <Child onclicking={Message}/>
+
+}
+
+function TEst(){
+  const [name, setName]=useState("")
+      useEffect(() => {
+document.title = "name=" + name
+}, [name])
+  return(
+    <input
+    value={name}
+    onChange={(e)=>setName(e.target.value)}
+    />
+) 
+}
 
 
 
@@ -223,7 +252,7 @@ function FormTest() {
 function App() {
   return (
     <>
-      <FormTest />
+      <TEst />
     </>
   )
 }
